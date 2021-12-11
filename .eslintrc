@@ -49,6 +49,7 @@
       "no-param-reassign": 0,
       "no-unused-vars": 2,
       "react/state-in-constructor": 0,
+      "react/jsx-no-constructed-context-values":0,
       "import/extensions": "off",
       // "import/no-unresolved": "off",
       "no-console": 0,
