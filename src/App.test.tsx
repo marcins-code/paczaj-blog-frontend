@@ -1,17 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Homepage from './views/pages/Homepage';
+import About from './views/pages/About';
 
 describe('fwfewef  ', () => {
   test('renders learn react link', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/ CodeSandbox/i);
+    render(<Homepage />);
+    const linkElement = screen.getByText(/Home/i);
     expect(linkElement).toBeInTheDocument();
   });
 
   test('renders learn react link', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/Start editing/i);
+    render(<About />);
+    const linkElement = screen.getByText(/About/i);
     expect(linkElement).toBeInTheDocument();
   });
 });
