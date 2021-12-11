@@ -1,151 +1,34 @@
-import React, { useRef, useCallback, useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
-import {
-  LoginSocialGoogle,
-  LoginSocialFacebook,
-  LoginSocialGithub,
-  IResolveParams,
-  TypeCrossFunction,
-} from 'reactjs-social-login';
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-  GithubLoginButton,
-  // AmazonLoginButton,
-  // InstagramLoginButton,
-  // LinkedInLoginButton,
-  // MicrosoftLoginButton,
-  // TwitterLoginButton
-} from 'react-social-login-buttons';
-import './App.css';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Page404 } from './views/errors/Page404';
+import About from './views/pages/About';
+import Homepage from './views/pages/Homepage';
+// import Categories from './views/pages/Categories';
+// import Series from './views/pages/Series';
+// import Contact from './views/pages/Contact';
+// import Glossary from './views/pages/Glossary';
+// import AdminArticles from './views/admin/AdminArticles';
+// import AdminArticleTypes from './views/admin/AdminArticleTypes';
+// import AdminGlossary from './views/admin/AdminGlossary';
+// import Login from './views/admin/Login';
 
-const responseGoogle = (response: unknown) => {
-  console.log(response);
-};
+const App = () => (
 
-const App = () => {
-  const [provider, setProvider] = useState('');
-  const [profile, setProfile] = useState<any>();
-  const googleRef = useRef<TypeCrossFunction>(null);
-  const facebookRef = useRef<TypeCrossFunction>(null);
-  // const microsoftRef = useRef<TypeCrossFunction>(null!)
-  // const linkedinRef = useRef<TypeCrossFunction>(null!)
-  const githubRef = useRef<TypeCrossFunction>(null);
-  const onLoginStart = useCallback(() => {
-    console.log('login start');
-  }, []);
+  <Routes>
+    <Route path="/" element={<Homepage />} />
+    <Route path="about" element={<About />} />
+    <Route path="*" element={<Page404 />} />
+    {/* <Route path="/categories" exact component={Categories} />
+        <Route path="/series" exact component={Series} />
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/glossary" exact component={Glossary} />
+        <Route path="/administration" exact component={Login} />
+        <Route path="/administration/articles" exact component={AdminArticles} />
+        <Route path="/administration/article-types" exact component={AdminArticleTypes} />
+        <Route path="/administration/glossary" exact component={AdminGlossary} /> */}
 
-  // const onLogoutFailure = useCallback(() => {
-  //   alert('logout fail');
-  // }, []);
-  const REDIRECT_URI = 'http://localhost:3000/login';
-  const onLogoutSuccess = useCallback(() => {
-    setProfile(null);
-    setProvider('');
-    console.log('logout success');
-  }, []);
+  </Routes>
 
-  const onLogout = useCallback(() => {
-    switch (provider) {
-      case 'amazon':
-        // amazonRef.current?.onLogout();
-        break;
-      case 'facebook':
-        facebookRef.current?.onLogout();
-        break;
-      case 'google':
-        googleRef.current?.onLogout();
-        break;
-      case 'instagram':
-        // instagramRef.current?.onLogout();
-        break;
-      case 'microsoft':
-        // microsoftRef.current?.onLogout();
-        break;
-      case 'github':
-        githubRef.current?.onLogout();
-        break;
-      case 'pinterest':
-        // pinterestRef.current?.onLogout();
-        break;
-      case 'twitter':
-        // twitterRef.current?.onLogout();
-        break;
-      case 'linkedin':
-        // linkedinRef.current?.onLogout();
-        break;
-      default:
-        break;
-    }
-  }, [provider]);
-
-  console.log(provider);
-  console.log(profile);
-
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <button onClick={onLogout} type="button">LO</button>
-      <GoogleLogin
-        clientId="600904631341-7q2v9sp8ff6ss6hpq76rnqfvnrjftf0i.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-      />
-      <LoginSocialFacebook
-        ref={facebookRef}
-        appId={process.env.REACT_APP_FB_APP_ID || ''}
-        onLoginStart={onLoginStart}
-        onLogoutSuccess={onLogoutSuccess}
-        // eslint-disable-next-line no-shadow
-        onResolve={({ provider, data }: IResolveParams) => {
-          setProvider(provider);
-          setProfile(data);
-        }}
-        onReject={(err) => {
-          console.log(err);
-        }}
-      >
-        <FacebookLoginButton />
-      </LoginSocialFacebook>
-      <LoginSocialGoogle
-        ref={googleRef}
-        client_id={process.env.REACT_APP_GG_APP_ID || ''}
-        // onLogoutFailure={onLogoutFailure}
-        onLoginStart={onLoginStart}
-        onLogoutSuccess={onLogoutSuccess}
-        // eslint-disable-next-line no-shadow
-        onResolve={({ provider, data }: IResolveParams) => {
-          setProvider(provider);
-          setProfile(data);
-        }}
-        onReject={(err) => {
-          console.log(err);
-        }}
-      >
-        <GoogleLoginButton />
-      </LoginSocialGoogle>
-      <LoginSocialGithub
-        ref={githubRef}
-        client_id={process.env.REACT_APP_GITHUB_APP_ID || ''}
-        client_secret={process.env.REACT_APP_GITHUB_APP_SECRET || ''}
-        redirect_uri={REDIRECT_URI}
-        onLoginStart={onLoginStart}
-        onLogoutSuccess={onLogoutSuccess}
-        // eslint-disable-next-line no-shadow
-        onResolve={({ provider, data }: IResolveParams) => {
-          setProvider(provider);
-          setProfile(data);
-        }}
-        onReject={(err: any) => {
-          console.log(err);
-        }}
-      >
-        <GithubLoginButton />
-      </LoginSocialGithub>
-    </div>
-  );
-};
+);
 
 export default App;
