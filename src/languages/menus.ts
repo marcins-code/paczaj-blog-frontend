@@ -1,10 +1,10 @@
 export const mainMenuItems = [
-  {
-    name_en: 'homepage',
-    name_pl: 'homepage',
-    path: '/',
-    exact: true,
-  },
+  // {
+  //   name_en: 'homepage',
+  //   name_pl: 'homepage',
+  //   path: '/',
+  //   exact: true,
+  // },
   { name_en: 'categories', name_pl: 'kategorie', path: '/categories' },
   { name_en: 'series', name_pl: 'serie', path: '/series' },
   { name_en: 'glossary', name_pl: 'słowniczek', path: '/glossary' },
