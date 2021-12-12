@@ -1,14 +1,10 @@
 import React, { useContext, useRef } from 'react';
-import {
-  Link,
-  Outlet,
-} from 'react-router-dom';
 import styled from 'styled-components';
-// import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { PageContext } from '../context';
 import { device } from '../themes/mediaBreakpoints';
-// import Navigation from '../components/organisms/Navigation/Navigation';
-// import '../assets/css/animations.css';
+import Navigation from '../components/organisms/Navigation/Navigation';
+import '../assets/css/animations.css';
 
 type Props = {
   children: React.ReactNode;
@@ -105,26 +101,19 @@ const MainTemplate: React.FC<Props> = ({ children }) => {
   const appClasses = isMobile ? 'sidebar-mobile' : `${navPosition} ${appTheme}`;
   return (
     <StyledBodyWrapper className="global-wrapper">
-      {/* <Navigation /> */}
+      <Navigation />
       <StyledAppWrapper className={[appClasses, 'app-wrapper'].join(' ')}>
-        <h1>Welcome to the app!</h1>
-        <nav>
-          <Link to="/">Invoices</Link>
-          {' '}
-          |
-          {' '}
-          <Link to="about">Dashboard</Link>
-        </nav>
-        <Outlet />
-        {/* <CSSTransition
+        <CSSTransition
           in={navPosition === 'sidebar' && !isMobile}
           timeout={1200}
           classNames="content"
           nodeRef={nodeRef}
           appear
-        > */}
-        <StyledContent className={[appClasses, 'content-wrapper'].join(' ')} ref={nodeRef}>{children}</StyledContent>
-        {/* </CSSTransition> */}
+        >
+          <StyledContent className={[appClasses, 'content-wrapper'].join(' ')} ref={nodeRef}>
+            {children}
+          </StyledContent>
+        </CSSTransition>
       </StyledAppWrapper>
     </StyledBodyWrapper>
   );
