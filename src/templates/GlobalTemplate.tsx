@@ -5,7 +5,7 @@ import { PageContext } from '../context';
 import GlobalStyle from '../themes/GlobalStyle';
 import { useAppSettings } from '../hooks/useAppSettings';
 import MainTemplate from './MainTemplate';
-// import SettingsPanel from '../components/organisms/SettingsPanel/SettingsPanel';
+import SettingsPanel from '../components/organisms/SettingsPanel/SettingsPanel';
 
 type Props = {
     children: React.ReactNode;
@@ -33,7 +33,6 @@ const GlobalTemplate: React.FC<Props> = ({ children }) => {
   } = useAppSettings(pageInitSettings);
 
   const theme = ThemeMixer(appTheme, pageInitSettings);
-  console.log(theme);
 
   return (
     <PageContext.Provider
@@ -53,7 +52,7 @@ const GlobalTemplate: React.FC<Props> = ({ children }) => {
 
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        {/* <SettingsPanel /> */}
+        <SettingsPanel />
         <MainTemplate>
           {children}
         </MainTemplate>
