@@ -7,7 +7,7 @@ import InlineSwitcher from '../../molecules/InlineSwitcher/InlineSwitcher';
 import { PageContext } from '../../../context';
 import { settingsPanelItems } from '../../../languages/settingsPanel';
 import '../../../assets/css/animations.css';
-import IconIcomoon from '../../IconIcomoon/IconIcomoon';
+import IconIcomoon from '../../atoms/IconIcomoon/IconIcomoon';
 import StyledToggleButton from '../../atoms/StyledToggleButton/StyledToggleButton';
 import cardboard from '../../../assets/images/background/cardboard.png';
 
@@ -133,8 +133,6 @@ const SettingsPanel = () => {
   const panelHideHandler = () => setIsPanelVisible(false);
   const buttonSpinHandlerOff = () => setIsSpinIcon(false);
 
-  console.log(isSpinIcon);
-  console.log(panelHideHandler);
   const appContext = useContext(PageContext);
   const {
     appLanguage,
@@ -149,7 +147,6 @@ const SettingsPanel = () => {
   } = appContext;
 
   const buttonSpinHandlerOn = () => setIsSpinIcon(!isMobile && true);
-  console.log(isSpinIcon);
   const nodeRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const {
